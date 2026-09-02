@@ -5,6 +5,11 @@ in a small persistent pane. No credit balance to track (this isn't a prepaid cou
 just a budget cap you set, and how close each service you're actually using is to its
 real Free Tier limit.
 
+![AWS Free Tier Bar pane with sample data](assets/screenshot.png)
+
+Sample data above, not a real account. Sorted by risk: CloudFront near its limit, Lambda
+barely touched.
+
 ## Requirements
 
 - Linux
