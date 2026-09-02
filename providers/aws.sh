@@ -6,7 +6,7 @@ set -uo pipefail
 BUDGET_CAP=1.00
 SIDE_PAD=2
 
-# ponytail: left-aligned, not centered — a term_width()-based centering math
+# ponytail: left-aligned, not centered. A term_width()-based centering math
 # doesn't always match what a small herdr pane actually renders, so
 # short-suffix rows (e.g. "1.4%") got over-padded into wrapping.
 left_line() {
@@ -14,10 +14,10 @@ left_line() {
 }
 
 # ponytail: bars fill as they approach the ceiling (spend toward the cap,
-# quota toward the limit) — the opposite direction of a "credit remaining"
+# quota toward the limit), the opposite direction of a "credit remaining"
 # bar, because there's no prepaid balance here, just thresholds not to cross.
 # ponytail: block-drawing chars (█/░) render double-width in narrow herdr
-# panes, so an 8-block bar costs ~16 visual columns, not 8 — sized to still
+# panes, so an 8-block bar costs ~16 visual columns, not 8. Sized to still
 # fit a ~45-col pane alongside a 10-char label and short suffix.
 render_bar_used() {
   local label=$1 pct=$2 suffix=$3 width=8 filled color="\e[2;38;5;214m" dim="\e[2m" reset="\e[0m" out=""

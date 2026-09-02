@@ -1,7 +1,7 @@
 # AWS Free Tier Bar
 
 Herdr plugin. Shows an AWS spend safety tripwire and per-service Free Tier quota usage
-in a small persistent pane. No credit balance to track (this isn't a prepaid coupon) —
+in a small persistent pane. No credit balance to track (this isn't a prepaid coupon),
 just a budget cap you set, and how close each service you're actually using is to its
 real Free Tier limit.
 
@@ -39,7 +39,7 @@ below 0.01%, `q` to stop.
 
 ### Budget cap
 
-The budget line is a $1.00 safety tripwire, not a spend plan — edit `BUDGET_CAP` at the
+The budget line is a $1.00 safety tripwire, not a spend plan. Edit `BUDGET_CAP` at the
 top of `providers/aws.sh` if you want a different ceiling.
 
 ## Feedback
