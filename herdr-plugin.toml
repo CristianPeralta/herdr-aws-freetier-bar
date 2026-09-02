@@ -1,0 +1,12 @@
+id = "aws-freetier-bar"
+name = "AWS Free Tier Bar"
+version = "0.1.0"
+min_herdr_version = "0.7.0"
+description = "AWS spend tripwire + per-service Free Tier quota usage, in a small persistent pane"
+platforms = ["linux"]
+
+[[actions]]
+id = "open"
+title = "Open AWS Free Tier bar (mini pane)"
+contexts = ["workspace", "pane"]
+command = ["bash", "actions/open.sh"]
