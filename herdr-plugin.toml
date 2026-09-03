@@ -1,6 +1,6 @@
 id = "aws-freetier-bar"
 name = "AWS Free Tier Bar"
-version = "0.1.0"
+version = "0.1.1"
 min_herdr_version = "0.7.0"
 description = "AWS spend tripwire + per-service Free Tier quota usage, in a small persistent pane"
 platforms = ["linux"]

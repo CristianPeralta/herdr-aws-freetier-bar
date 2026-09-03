@@ -20,6 +20,30 @@ barely touched.
 No API key is stored by this plugin. If `aws` is missing or not authenticated, the pane
 shows the real error instead of staying blank, and you can retry with `r` once it's fixed.
 
+### One-time setup: create the budget
+
+The spend bar reads from [AWS Budgets](https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html)
+(free for the first 2 budgets/account), not Cost Explorer (that one charges $0.01/call,
+with no free tier — don't use it for a pane that refreshes every 30 min). Create a budget
+named `herdr-freetier-bar` once, matching whatever cap you set as `BUDGET_CAP` in
+`providers/aws.sh` (default `$1.00`):
+
+```bash
+cat <<'EOF' > /tmp/herdr-freetier-budget.json
+{
+  "BudgetName": "herdr-freetier-bar",
+  "BudgetLimit": {"Amount": "1.00", "Unit": "USD"},
+  "TimeUnit": "MONTHLY",
+  "BudgetType": "COST"
+}
+EOF
+aws budgets create-budget \
+  --account-id "$(aws sts get-caller-identity --query Account --output text)" \
+  --budget file:///tmp/herdr-freetier-budget.json
+```
+
+AWS Budgets refreshes actual spend up to 3 times a day (every 8-12h), not in real time.
+
 ## Install
 
 ```bash

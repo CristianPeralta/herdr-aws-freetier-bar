@@ -36,6 +36,7 @@ render_bar_used() {
 }
 
 expanded=false
+account_id=$(aws sts get-caller-identity --query Account --output text 2>/dev/null)
 
 while true; do
   clear
@@ -45,9 +46,8 @@ while true; do
   # ponytail: Cost Explorer (ce get-cost-and-usage) costs $0.01/call, no free
   # tier. Switched to AWS Budgets (describe-budget), which is free for the
   # first 2 budgets/account, same ActualSpend data. Requires a budget named
-  # herdr-freetier-bar with limit == BUDGET_CAP (create once via
-  # `aws budgets create-budget`).
-  resp=$(aws budgets describe-budget --account-id 920154635633 \
+  # herdr-freetier-bar with limit == BUDGET_CAP (create once, see README setup).
+  resp=$(aws budgets describe-budget --account-id "$account_id" \
     --budget-name herdr-freetier-bar 2>&1)
   if [ $? -ne 0 ]; then
     left_line "$(printf '\e[2mnot authenticated: %s\e[0m' "$(sed -n '1p' <<<"$resp")")"
