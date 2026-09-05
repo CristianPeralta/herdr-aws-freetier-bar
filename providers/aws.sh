@@ -26,7 +26,7 @@ render_bar_used() {
   ((pct_i < 0)) && pct_i=0
   local over=$((pct_i > 100))
   ((pct_i > 100)) && pct_i=100
-  filled=$((pct_i * width / 100))
+  filled=$(( (pct_i * width + 50) / 100 ))
   out+=$(printf "%-10.10s " "$label")
   out+=$(printf "%b" "$color")
   for ((i = 0; i < filled; i++)); do out+="█"; done
