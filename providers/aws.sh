@@ -94,7 +94,7 @@ while true; do
   fi
 
   echo
-  left_line "$(printf '\e[2m%s  ·  q quit  ·  e expand  ·  r refresh\e[0m' "$(date -u +%H:%M)")"
+  left_line "$(printf '\e[2m%s  ·  q quit  ·  e expand  ·  r refresh\e[0m' "$(date +%H:%M)")"
 
   elapsed=0
   while ((elapsed < 1800)); do
