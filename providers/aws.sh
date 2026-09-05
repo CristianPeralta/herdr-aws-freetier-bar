@@ -20,10 +20,11 @@ left_line() {
 # panes, so an 8-block bar costs ~16 visual columns, not 8. Sized to still
 # fit a ~45-col pane alongside a 10-char label and short suffix.
 render_bar_used() {
-  local label=$1 pct=$2 suffix=$3 width=8 filled color="\e[2;38;5;214m" dim="\e[2m" reset="\e[0m" out=""
+  local label=$1 pct=$2 suffix=$3 width=8 filled color="\e[2;38;5;214m" dim="\e[2m" reset="\e[0m" alert="\e[1;31m" out=""
   local pct_i=${pct%.*}
   pct_i=${pct_i:-0}
   ((pct_i < 0)) && pct_i=0
+  local over=$((pct_i > 100))
   ((pct_i > 100)) && pct_i=100
   filled=$((pct_i * width / 100))
   out+=$(printf "%-10.10s " "$label")
@@ -32,6 +33,7 @@ render_bar_used() {
   out+=$(printf "%b" "$dim")
   for ((i = filled; i < width; i++)); do out+="░"; done
   out+=$(printf "%b %s" "$reset" "$suffix")
+  ((over)) && out+=$(printf " %b⚠%b" "$alert" "$reset")
   left_line "$out"
 }
 
